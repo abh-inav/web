@@ -28,15 +28,16 @@
     </body>
     <script type="text/javascript">
         var h,w,r;
-h=document.querySelector("html").clientHeight;
+
+function ratio(){
+    h=document.querySelector("html").clientHeight;
 w=document.querySelector("html").clientWidth;
 r=h/w;
-function ratio(){
 if(r>1){
-    document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/abh-inav/web/main/background_blur_rotated.png')";
+    document.body.style.backgroundImage = "url('/background_blur_rotated.png')";
 }
 else{
-    document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/abh-inav/web/main/background_blur.png')";
+    document.body.style.backgroundImage = "url('/background_blur.png')";
 }
 }
     </script>
