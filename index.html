@@ -1,45 +1,59 @@
 <html>
     <head>
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap" rel="stylesheet">
         <style>
-
-}
-            html{
-                filter:blur;
-            }
-               body{
-        font-family: 'Fascinate Inline', cursive;
-            height: 100;
+        body {
+            display:flex;
+            margin:0;
+            background:#f5f9e9;
         }
-        p{
-            text-align: center;
-    margin-top: 250px;
-    font-size: 240px;
-    
-}
+        #right_box{
+            background:#eaeaad;
+    height: 97%;
+    width: 28%;
+    border-radius: 26px;
+    margin: 10px;
+
+        }
+        #left_box{
+            display:flex;
+            flex-direction: column;
+            height: 97%;
+            width: 72%;
+            margin: 10px;
+        }
+        #r-top_box{
+            display:flex;
+            background:  #181000;
+            height: 17%;
+            width: 100%;
+            border-radius: 20px;
+        }
+        #r-bottom_box{
+            background: #f9b437;
+            height: 83%;
+            width: 100%;
+            border-radius: 20px;
+            background-image: url("https://raw.githubusercontent.com/abh-inav/web/0df6d6f0cd75681ef1b3078ff8a0313d60281cb4/circle.svg");
+            margin-top: 12px;;
+        }
         
         </style>
-     
-    </head>
-    <body onload="ratio()">
-        <p>lia</p>
-    </body>
-    <script type="text/javascript">
-        var h,w,r;
 
-function ratio(){
-    h=document.querySelector("html").clientHeight;
-w=document.querySelector("html").clientWidth;
-r=h/w;
-if(r>1){
-    document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/abh-inav/web/main/background_blur_rotated.png')";
-}
-else{
-    document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/abh-inav/web/main/background_blur.png')";
-}
-}
-    </script>
-    
+    </head>
+    <body>
+        <div id="right_box"></div>
+        <div id="left_box">
+            <div id="r-top_box">
+                <div id="r-t-left_box"></div>
+                <div id="r-t-right_box"></div>
+            </div>
+            <div id="r-bottom_box">
+                <p>
+                    hello this is abhinav </br>
+                    welcome!.
+                </p>
+            </div>
+        </div>
+    </body>
+
 </html>
