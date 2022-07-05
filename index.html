@@ -1,5 +1,8 @@
 <html>
     <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fascinate+Inline&family=Roboto:wght@500&display=swap" rel="stylesheet">
         <style>
         body {
             display:flex;
@@ -29,14 +32,119 @@
             border-radius: 20px;
         }
         #r-bottom_box{
-            background: #f9b437;
+            background: #fff5e2;
             height: 83%;
             width: 100%;
             border-radius: 20px;
-            background-image: url("https://raw.githubusercontent.com/abh-inav/web/0df6d6f0cd75681ef1b3078ff8a0313d60281cb4/circle.svg");
-            margin-top: 12px;;
+           /* background-image: url("/circle.svg");*/
+            margin-top: 12px;
+            overflow: scroll;
         }
-        
+        .container{
+            width: 22%;
+            position: relative;
+            border: radius 14px;
+        }
+        .marvel_card_img{
+            display: block;
+            width: 100%;
+            border-radius: 14px;
+        }
+        .overlay{
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            right: 0;
+            background-color: #6abad4a5;
+            overflow: hidden;
+            width: 100%;
+            height: 0;
+            transition: .5s ease;
+        }
+
+        .container:hover{
+          animation-name:imgscale;
+          animation-duration: 0.5s;
+          animation-timing-function: ease-in-out;
+        }
+        #marvel_img_cards{
+            left: 45%;
+            top: 10%;
+        }
+        /*-------------------------------------------------------------------------------*/
+
+        .card_box_right {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+        }
+        .card_box_left {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+        }
+                /*-------------------------------------------------------------------------------*/
+                div#the_avenger_img_cards {
+    right: 20%;
+}
+
+div#age_of_ultron_img_card {
+    left: 9%;
+}
+
+div#infinitywar_img_card {
+    right: 15%;
+}
+
+div#endgame_img_card {
+    left: 13%;
+}
+        /*-------------------------------------------------------------------------------*/
+        img#marvel_the_avenger {
+    box-shadow: 0px 0px 20px 7px #346f72a3;
+}
+
+img#marvel_the_age_of_ultron {
+    box-shadow: 0px 0px 20px 7px #797c80c4;
+}
+
+img#marvel_infinity_war {
+    box-shadow: 0px 0px 20px 7px #160a15a8;
+}
+
+img#marvel_end_game {
+    box-shadow: 0px 0px 20px 7px #0f0564c7;
+}
+p{
+    font-family: 'Fascinate Inline', cursive;
+font-family: 'Roboto', sans-serif;
+color:#000000cf;
+}
+h2{
+    border-top: 0px;
+    border-style: solid;
+    border-right: 0;
+    border-left: 0;
+    border-bottom-width: 3;
+
+}
+h2:hover{
+    animation-name: lineslide;
+  animation-duration: 0.2s;
+  animation-iteration-count: 1;
+}
+        /*-------------------------------------------------------------------------------*/
+        @keyframes lineslide{
+              0%{  border-bottom-width: 0; border-color: white;}
+            100%{  border-bottom-width: 3;}
+        }
+        @keyframes imgscale{
+            0%{width:22%;}
+            50%{width:23%; filter: blur(2px);}
+            100%{width:22%;}
+        }
         </style>
 
     </head>
@@ -48,15 +156,82 @@
                 <div id="r-t-right_box"></div>
             </div>
             <div id="r-bottom_box">
-                <p>
-                    hello this is abhinav </br>
-                    welcome!.
+              <div id="theavenger_box" class="card_box_right">  
+                <div id="the_avenger_txt">
+                    <h2 id="the-avenger-h2" class="intro_heading">The Avengers</h2>
+                                <p id="the-avenger" class="inroduction_card_txt"> Marvel Studios presents in association with</br> 
+                                        Paramount Pictures "Marvel's The Avengers"</br>
+                                        --the super hero team up of a lifetime,</br>
+                                        featuring iconic Marvel super heroes Iron Man,</br>
+                                        the Incredible Hulk,Thor, Captain America,</br>
+                                        Hawkeye and Black Widow. </p>
+                    </div>
+                <div id="the_avenger_img_cards" class="container">
+                    <img src="marvel log\theavengers_lob_crd_03_0.jpg" id="marvel_the_avenger" class="marvel_card_img" width="100%">
+                    <div id="marverl_the_avenger_overlay" class="overlay"></div>
+                </div>
+                </div>
+                <div id="ageofultron_box" class="card_box_left">
+                    <div id="ageofultron_txt">
+                        <h2 id="ageofultron_h2" class="intro_heading">Avengers Age of Ultron</h2>
+                    <p id="ageofultron" class="inroduction_card_txt">
+                        Marvel Studios presents “Avengers: Age of Ultron,”</br>
+                        the epic follow-up to the biggest Super Hero movie</br>
+                        of all time. When Tony Stark tries to jumpstart a </br>
+                        dormant peacekeeping program, things go awry and Earth’s</br>
+                        Mightiest Heroes, including Iron Man, Captain America, </br>
+                        Thor, The Incredible Hulk, Black Widow and Hawkeye, </br>
+                        are put to the ultimate test as the fate of the</br>
+                        planet hangs in the balance.
+                    </p>
+                </div>
+                <div id="age_of_ultron_img_card" class="container">
+                    <img src="marvel log\avengersageofultron_lob_crd_03_0.jpg" id="marvel_the_age_of_ultron" class="marvel_card_img" width="100%">
+                    <div id="marverl_the_ageofultron_overlay" class="overlay"></div>
+                </div>
+            </div>
+            <div id="infintywar_box" class="card_box_right">
+            <div id="infinity_war_txt">
+                <h2 id="infinitywar_h2" class="intro_heading">Avengers Infinity War</h2>
+                <p id="infinity_war" class="inroduction_card_txt">
+                    An unprecedented cinematic journey ten years</br>
+                    in the making and spanning the entire Marvel</br>
+                    Cinematic Universe, Marvel Studios' "Avengers:</br>
+                    Infinity War" brings to the screen the ultimate,</br>
+                    deadliest showdown of all time. As the Avengers</br>
+                    and their allies have continued to protect the</br>
+                    world from threats too large for any one hero to</br>
+                    handle, a new danger has emerged from the cosmic</br>
+                    shadows: Thanos.
                 </p>
+                </div>
+                <div id="infinitywar_img_card" class="container">
+                    <img src="marvel log\avengersinfinitywar_lob_crd_02.jpg" id="marvel_infinity_war" class="marvel_card_img" width="100%">
+                    <div id="marverl_infinitywar_overlay" class="overlay"></div>
+                </div>
+            </div>
+            <div id="endgame_box" class="card_box_left">
+                <div id="endgame_txt">
+                    <h2 id="endgame_h2" class="intro_heading">Avengers Endgame</h2>
+                <p id="endgame" class="inroduction_card_txt">
+                    The grave course of events set in motion by Thanos</br>
+                    that wiped out half the universe and fractured the</br>
+                    Avengers ranks compels the remaining Avengers to</br>
+                    take one final stand in Marvel Studios' grand</br>
+                    conclusion to twenty-two films, "Avengers: Endgame."
+                </p>
+            </div>
+                <div id="endgame_img_card" class="container">
+                    <img src="marvel log\avengersendgame_lob_crd_05.jpg" id="marvel_end_game" class="marvel_card_img" width="100%">
+                    <div id="marverl_endgame_overlay" class="overlay"></div>
+                </div>
+                </div>
             </div>
         </div>
     </body>
     <script type="text/javascript">
                 var h,w,r;
+                var clicko;
                 function alert_rotate() {
                     h=document.querySelector("html").clientHeight;
                     w=document.querySelector("html").clientWidth;
