@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>screen cordinates</title>
+    <style>
+               .card {
+            border-radius: 19px;
+            border: 0.5px solid #FFF;
+            background: #FFF;
+            box-shadow: -6px -6px 12px 0px #DADADA, 6px 6px 12px 0px #C5C5C5;
+        }
+        #atCard {
+            position: absolute;
+            top: 9em;
+            left: 1.7em;
+            height: 101em;
+            width: 58em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="atCard" class="card">
+        <p id="roll">01</p>
+    </div>
+    <h1>Click the button to download JSON data</h1>
+    <button id="downloadButton">Download JSON</button>
+
+    <script>
+ 
+let touchStartX = 0;
+let touchEndX = 0;
+let touchStartY = 0;
+let touchEndY = 0;
+
+let swipeDistance;
+let count = 1;
+let isAnimating = false; // Add a flag to track animation state
+
+const card = document.querySelector("#atCard");
+
+// Add an event listener to track the touch start position.
+card.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+});
+card.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+});
+
+card.addEventListener('touchend', (e) => {
+    touchEndX = e.touches[0].clientX;
+});
+card.addEventListener('touchend', (e) => {
+    touchEndY = e.touches[0].clientY;
+});
+let i=0;
+card.addEventListener('touchstart', (e) => { i++
+    data.hr[i] = touchStartX;
+});
+
+let data= {
+    hr:{
+
+    },
+    ve :{
+
+    },
+    up :{
+    } ,
+    down :{
+    } , 
+    right :{
+
+    },
+    left :{
+        
+    }
+
+}
+
+        // Convert the object to a JSON string
+        const jsonString = JSON.stringify(data);
+
+        // Function to trigger the download
+        function downloadJson() {
+             // Convert the object to a JSON string
+        const jsonString = JSON.stringify(data);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'data.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Add a click event listener to the download button
+        const downloadButton = document.getElementById('downloadButton');
+        downloadButton.addEventListener('click', downloadJson);
+    </script>
+</body>
+
+</html>
