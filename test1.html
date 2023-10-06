@@ -1,21 +1,120 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-    <title>screen cordinates</title>
     <style>
-               .card {
+        html {
+            background: #D6D6D6;
+            font-family: system-ui;
+        }
+
+        .card {
             border-radius: 19px;
             border: 0.5px solid #FFF;
             background: #FFF;
             box-shadow: -6px -6px 12px 0px #DADADA, 6px 6px 12px 0px #C5C5C5;
         }
+
+        body {
+            margin: 0px;
+        }
+
         #atCard {
             position: absolute;
             top: 9em;
             left: 1.7em;
             height: 101em;
             width: 58em;
+        }
+
+        #roll {
+
+            font: bold 34em arial, sans-serif;
+            background-color: #4A4A4A;
+            color: transparent;
+            text-shadow: 9px 4px 3px rgb(255 255 255 / 50%);
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            text-align: center;
+        }
+
+        #opt {
+            position: absolute;
+            left: 0px;
+            width: 61.1em;
+            height: 10em;
+            top: 126em;
+            right: 0px;
+            bottom: 0px;
+            border-radius: 17px 17px 0px 0px;
+            border: 0.5px solid #FFF;
+            background: #FFF;
+            box-shadow: 0px -5px 8px 0px #a3a3a3;
+        }
+
+        #date {
+            left: 1.7em;
+            position: absolute;
+            top: 112em;
+            width: 58em;
+            height: 12em;
+            border-radius: 17px;
+            border: 0.5px solid #FFF;
+            background: #FFF;
+            box-shadow: 0px -5px 8px 0px #a3a3a3;
+        }
+
+        #dateT {
+            margin: 0px;
+            font-size: 7em;
+            position: absolute;
+            top: 0.2em;
+            left: 0.5em;
+        }
+
+        #calanderIcn {
+            border-radius: 19px;
+            border: 0.5px solid #FFF;
+            box-shadow: -6px -6px 12px 0px #DADADA, 6px 6px 12px 0px #C5C5C5;
+            background-image: url(calendar.png);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            position: relative;
+            height: 11em;
+            top: 0.5em;
+            width: 11em;
+            left: 45em;
+        }
+
+        @keyframes swipeLeft {
+            0% {
+                box-shadow: -20px -4px 20px 6px #f9b6b6 inset;
+            }
+
+            50% {
+                background: #f9b6b6;
+            }
+
+            100% {
+                box-shadow: 20px 4px 20px 6px #f9b6b6 inset;
+            }
+
+        }
+        @keyframes swipeRight {
+            0% {
+                box-shadow: 20px 4px 20px 6px #ace6ea inset;
+            }
+
+            50% {
+                background: #ace6ea;
+            }
+
+            100% {
+                box-shadow: -20px -4px 20px 6px #ace6ea inset;
+            }
+
+        }
+        #saveDatabtn > p {
+            font-size:3em;
         }
     </style>
 </head>
@@ -24,18 +123,22 @@
     <div id="atCard" class="card">
         <p id="roll">01</p>
     </div>
-    <h1>Click the button to download JSON data</h1>
-    <button id="downloadButton">Download JSON</button>
-
-    <script>
- 
+    <div id="date">
+        <p id="dateT">12/01/2023</p>
+        <div id="calanderIcn"></div>
+    </div>
+    <div id="opt">
+        <button class="card" id="saveDatabtn" onclick="downloadJson()"><p>SaveData</p></button>
+    </div>
+</body>
+<script>
 let touchStartX = 0;
 let touchEndX = 0;
 let touchStartY = 0;
 let touchEndY = 0;
 
 let swipeDistance;
-let count = 1;
+let count = 0;
 let isAnimating = false; // Add a flag to track animation state
 
 const card = document.querySelector("#atCard");
@@ -54,33 +157,63 @@ card.addEventListener('touchend', (e) => {
 card.addEventListener('touchend', (e) => {
     touchEndY = e.touches[0].clientY;
 });
-let i=0;
-card.addEventListener('touchstart', (e) => { i++
-    data.hr[i] = touchStartX;
+
+
+// Add an event listener to track the touch end position and detect the swipe.
+card.addEventListener('touchend', (e) => {
+    if (isAnimating) return; // Ignore swipe if animation is already in progress
+
+    touchEndX = e.changedTouches[0].clientX;
+
+    // Calculate the horizontal distance of the swipe.
+    swipeDistance = touchStartX - touchEndX;
+
+    // You can adjust the threshold to determine what constitutes a swipe.
+    const swipeThreshold = 300;
+
+    if (swipeDistance < swipeThreshold) {
+        // This means a right swipe.
+        count++;
+        console.log('Right swipe detected');
+        console.log(swipeDistance);
+        data.present[count] = 1;
+        animateSwipe("swipeRight"); // Trigger the right swipe animation
+    }
+    if (swipeDistance > swipeThreshold) {
+        // This means a left swipe.
+        count++;
+        console.log('Left swipe detected');
+        console.log(swipeDistance);
+        data.absent[count] = 0;
+        animateSwipe("swipeLeft"); // Trigger the left swipe animation
+    }
 });
 
-let data= {
-    hr:{
+let data = {
+    present : {
 
-    },
-    ve :{
-
-    },
-    up :{
     } ,
-    down :{
-    } , 
-    right :{
+    absent : {
 
-    },
-    left :{
-        
     }
+}
+const jsonPerson = JSON.stringify(data);
 
+console.log(data);
+
+function animateSwipe(animationName) {
+    isAnimating = true; // Set animation flag
+    card.style.animation = `${animationName} 0.5s ease`;
+    document.querySelector("#roll").innerText = count;
+
+    // Reset animation flag when the animation completes
+    card.addEventListener("animationend", () => {
+        isAnimating = false;
+        card.style.animation = ""; // Reset animation
+    }, { once: true });
 }
 
-        // Convert the object to a JSON string
-        const jsonString = JSON.stringify(data);
+
 
         // Function to trigger the download
         function downloadJson() {
@@ -100,7 +233,8 @@ let data= {
         // Add a click event listener to the download button
         const downloadButton = document.getElementById('downloadButton');
         downloadButton.addEventListener('click', downloadJson);
-    </script>
-</body>
+
+        
+</script>
 
 </html>
